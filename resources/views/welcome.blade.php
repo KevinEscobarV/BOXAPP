@@ -143,165 +143,163 @@
     <!-- HERO -->
     <section class="hero d-flex flex-column justify-content-center align-items-center" id="home">
 
-        <div class="bg-overlay"></div>
+<div class="bg-overlay"></div>
 
-        <div class="container">
-            <div class="row">
+   <div class="container">
+        <div class="row">
 
-                <div class="col-lg-8 col-md-10 mx-auto col-12">
-                    <div class="hero-text mt-5 text-center">
+             <div class="col-lg-8 col-md-10 mx-auto col-12">
+                  <div class="hero-text mt-5 text-center">
 
-                        <h6 data-aos="fade-up" data-aos-delay="300">¡nueva forma de construir un estilo de vida
-                            saludable!</h6>
+                        <h6 data-aos="fade-up" data-aos-delay="300">¡Nueva Forma De Construir Un Estilo De Vida Saludable!</h6>
 
                         <h1 class="text-white" data-aos="fade-up" data-aos-delay="500">ENTRENA EN BOX88</h1>
 
-                        <a href="#feature" class="btn custom-btn mt-3" data-aos="fade-up"
-                            data-aos-delay="600">Regístrate</a>
+                        <a href="#feature" class="btn custom-btn mt-3" data-aos="fade-up" data-aos-delay="600">REGÍSTRATE</a>
 
-                        <a href="#about" class="btn custom-btn bordered mt-3" data-aos="fade-up"
-                            data-aos-delay="700">Saber Mas</a>
-
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-
-    <section class="feature" id="feature">
-        <div class="container">
-            <div class="row">
-
-                <div class="d-flex flex-column justify-content-center ml-lg-auto mr-lg-5 col-lg-5 col-md-6 col-12">
-                    <h1 class="mb-3 text-white" data-aos="fade-up">¿Quieres ser nuevo miembro?</h1>
-
-                    <h6 class="mb-4 text-white" data-aos="fade-up">Registrate y ser parte de nosotros</h6>
-
-                    @auth
-                        <form method="POST" action="{{ route('logout') }}" x-data>
-                            @csrf
-                            <a href="{{ route('logout') }}" class="btn custom-btn bg-color mt-3"
-                                @click.prevent="$root.submit();">
-                                {{ __('Log Out') }}
-                            </a>
-                        </form>
-                    @else
-                        <a href="#" class="btn custom-btn bg-color mt-3" data-aos="fade-up" data-aos-delay="300"
-                            data-toggle="modal" data-target="#membershipForm">¡Registrate Aqui!</a>
-
-                        <a href="{{ route('login') }}" class="btn custom-btn bg-color mt-3" data-aos="fade-up"
-                            data-aos-delay="300">¡Iniciar Sesión!</a>
-                    @endauth
-
-                </div>
-
-                <div class="mr-lg-auto mt-3 col-lg-4 col-md-6 col-12">
-                    <div class="about-working-hours">
-                        <div>
-
-                            <h1 class="mb-4 text-white" data-aos="fade-up" data-aos-delay="500">Horas de servicio</h1>
-
-                            <strong class="d-block" data-aos="fade-up" data-aos-delay="600">Domingo :
-                                Cerrado</strong>
-
-                            <strong class="mt-3 d-block" data-aos="fade-up" data-aos-delay="700">Lunes -
-                                Viernes</strong>
-
-                            <p data-aos="fade-up" data-aos-delay="800">7:00 AM - 9:00 AM | 5:00 PM - 9:00 PM</p>
-
-                            <strong class="mt-3 d-block" data-aos="fade-up" data-aos-delay="700">Sabado</strong>
-
-                            <p data-aos="fade-up" data-aos-delay="800">7:00 PM - 9:00 PM</p>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
+                        <a href="#about" class="btn custom-btn bordered mt-3" data-aos="fade-up" data-aos-delay="700">SABER MAS</a>
+                       
+                  </div>
+             </div>
 
         </div>
-        </div>
-    </section>
+   </div>
+</section>
 
 
-    <!-- ABOUT -->
-    <section class="about section" id="about">
-        <div class="container">
-            <div class="row">
+<section class="feature" id="feature">
+<div class="container">
+<div class="row">
+
+    <div class="d-flex flex-column justify-content-center ml-lg-auto mr-lg-5 col-lg-5 col-md-6 col-12">
+        <h1 class="mb-3 text-white text" data-aos="fade-up">Quieres ser nuevo miembro?</h1>
+
+        <h6 class="mb-4 text-white" data-aos="fade-up">Registrate y ser parte de nosotros</h6>
+
+        @auth
+        <form method="POST" action="{{ route('logout') }}" x-data>
+            @csrf
+            <a href="{{ route('logout') }}" class="btn custom-btn bg-color mt-3" @click.prevent="$root.submit();">
+                {{ __('Log Out') }}
+            </a>
+        </form>
+        @else
+        <a href="#" class="btn custom-btn bg-color mt-3" data-aos="fade-up" data-aos-delay="300" data-toggle="modal" data-target="#membershipForm">¡Registrate Aqui!</a>
+
+        <a href="{{ route('login') }}" class="btn custom-btn bg-color mt-3" data-aos="fade-up" data-aos-delay="300">¡Iniciar Sesión!</a>
+        @endauth   
+
+    </div>
+
+    <div class="mr-lg-auto mt-3 col-lg-4 col-md-6 col-12">
+         <div class="about-working-hours">
+              <div>
+
+                    <h1 class="mb-4 text-white" data-aos="fade-up" data-aos-delay="500">Horas De Servicio</h1>
+
+                   <strong class="d-block" data-aos="fade-up" data-aos-delay="600">Domingo : Cerrado</strong>
+
+                   <strong class="mt-3 d-block" data-aos="fade-up" data-aos-delay="700">Lunes - Viernes</strong>
+
+                    <p data-aos="fade-up" data-aos-delay="800">7:00 AM - 9:00 AM | 5:00 PM - 9:00 PM</p>
+
+                    <strong class="mt-3 d-block" data-aos="fade-up" data-aos-delay="700">Sabado</strong>
+
+                    <p data-aos="fade-up" data-aos-delay="800">7:00 PM - 9:00 PM</p>
+                   </div>
+              </div>
+         </div>
+    </div>
+
+</div>
+</div>
+</section>
+
+
+<!-- ABOUT -->
+<section class="about section" id="about">
+   <div class="container">
+        <div class="row">
 
                 <div class="mt-lg-5 mb-lg-0 mb-4 col-lg-5 col-md-10 mx-auto col-12">
-                    <h1 class="mb-4" data-aos="fade-up" data-aos-delay="300">Hello, we are Gymso</h1>
+                    <h1 class="mb-4" data-aos="fade-up" data-aos-delay="300">Misión:</h1>
 
-                    <p data-aos="fade-up" data-aos-delay="400">You are NOT allowed to redistribute this HTML template
-                        downloadable ZIP file on any template collection site. You are allowed to use this template for
-                        your personal or business websites.</p>
+                    <p data-aos="fade-up" data-aos-delay="400"> Nuestra misión es que los socios progresen de forma constante y evolutiva su condición física, dándoles de una perfecta base física que les permita afrontar cualquier reto. Optimizamos el potencial físico en todos nuestros usuarios hasta límites inimaginables, retando su cuerpo y mente al punto de priorizar la actividad física en sus vidas.</p>
 
-                    <h1 class="mb-4 mt-4" data-aos="fade-up" data-aos-delay="300">Hello, we are Gymso</h1>
+                    <h1 class="mb-4 mt-4" data-aos="fade-up" data-aos-delay="300">Visión:</h1>
 
-                    <p data-aos="fade-up" data-aos-delay="400">You are NOT allowed to redistribute this HTML template
-                        downloadable ZIP file on any template collection site. You are allowed to use this template for
-                        your personal or business websites.</p>
+                    <p data-aos="fade-up" data-aos-delay="400"> Nuestra estrategia es tener centros de entrenamientos de referencia nivel departamental en todas las especialidades de entrenamiento que practicamos crossfit y entrenamiento funcional. Ponemos en marcha iniciativas constantes para la mejora y el bienestar de todos los deportistas que depositan su confianza en nosotros y nos eligen como su prioridad para sentirse bien.</p>
 
-                    <h1 class="mb-4 mt-4" data-aos="fade-up" data-aos-delay="300">Hello, we are Gymso</h1>
+                    <h1 class="mb-4 mt-4" data-aos="fade-up" data-aos-delay="300">Objetivo:</h1>
 
-                    <p data-aos="fade-up" data-aos-delay="400">You are NOT allowed to redistribute this HTML template
-                        downloadable ZIP file on any template collection site. You are allowed to use this template for
-                        your personal or business websites.</p>
+                    <p data-aos="fade-up" data-aos-delay="400"> Nos enfocamos en ayudar a mejorar el estilo de vida de las personas a través de la actividad física, desarrollando cada una de las cualidades de nuestros usuarios.</p>
 
+                    <h1 class="mb-4 mt-4" data-aos="fade-up" data-aos-delay="300">Valores:</h1>
+
+                    <p data-aos="fade-up" data-aos-delay="400">
+                        
+                    </p>
+                    <ul>
+                            <li>-Profesionalidad y honradez</li>
+                            <li>-Alto grado de cualificación </li>
+                            <li>-Compromiso de calidad integral (producto y servicio)</li>
+                            <li>-Capacidad de trabajo -respuesta -eficiencia</li>
+                            <li>-Compromiso y atención a nuestros socios</li>
+                            <li>-Trabajo en equipo </li>
+                        </ul>
+                       
+                   
                 </div>
 
                 <div class="ml-lg-auto col-lg-3 col-md-6 col-12" data-aos="fade-up" data-aos-delay="700">
                     <div class="team-thumb">
-                        <img src="images/team/team-image.jpg" class="img-fluid" alt="Trainer">
+                        <img src="images/coach.jpg" class="img-fluid" alt="Trainer">
 
                         <div class="team-info d-flex flex-column">
 
-                            <h3>Mary Yan</h3>
-                            <span>Yoga Instructor</span>
+                            <h3>Alejandro Londoño</h3>
+                            <span>Coach</span>
 
                             <ul class="social-icon mt-3">
-                                <li><a href="#" class="fa fa-twitter"></a></li>
-                                <li><a href="#" class="fa fa-instagram"></a></li>
+                                <li><a href="https://www.facebook.com/jandro.diaz.90" target="_blank" class="fa fa-facebook"></a></li>
+                                <li><a href="https://www.instagram.com/box88cross/?hl=es-la" target="_blank" class="fa fa-instagram"></a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
 
-                <div class="mr-lg-auto mt-5 mt-lg-0 mt-md-0 col-lg-3 col-md-6 col-12" data-aos="fade-up"
-                    data-aos-delay="800">
+                <div class="mr-lg-auto mt-5 mt-lg-0 mt-md-0 col-lg-3 col-md-6 col-12" data-aos="fade-up" data-aos-delay="800">
                     <div class="team-thumb">
-                        <img src="images/team/team-image01.jpg" class="img-fluid" alt="Trainer">
+                        <img src="images/coach_2.jpg" class="img-fluid" alt="Trainer">
 
                         <div class="team-info d-flex flex-column">
 
-                            <h3>Catherina</h3>
-                            <span>Body trainer</span>
+                            <h3>Heyder Triana</h3>
+                            <span>Staff</span>
 
                             <ul class="social-icon mt-3">
-                                <li><a href="#" class="fa fa-instagram"></a></li>
-                                <li><a href="#" class="fa fa-facebook"></a></li>
-                                
+                                <li><a href="https://www.instagram.com/heydertriana09/?hl=es-la" target="_blank" class="fa fa-instagram"></a></li>
+                                <li><a href="https://www.facebook.com/Crossfitero16/" target="_blank"  class="fa fa-facebook"></a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
 
-            </div>
         </div>
-    </section>
+   </div>
+</section>
 
 
-    <!-- CLASS -->
-    <section class="class section" id="class">
-        <div class="container">
-            <div class="row">
+<!-- CLASS -->
+<section class="class section" id="class">
+   <div class="container">
+        <div class="row">
 
                 <div class="col-lg-12 col-12 text-center mb-5">
-                    <h6 data-aos="fade-up">Get A Perfect Body</h6>
+                    <h6 data-aos="fade-up">Nuevas Tarifas</h6>
 
                     <h2 data-aos="fade-up" data-aos-delay="200">Our Training Classes</h2>
-                </div>
+                 </div>
 
                 <div class="col-lg-4 col-md-6 col-12" data-aos="fade-up" data-aos-delay="400">
                     <div class="class-thumb">
@@ -351,10 +349,9 @@
                     </div>
                 </div>
 
-            </div>
         </div>
-    </section>
-
+   </div>
+</section>
 
     <!-- SCHEDULE -->
     <section class="schedule section" id="schedule">
