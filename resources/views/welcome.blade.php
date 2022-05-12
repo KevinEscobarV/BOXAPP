@@ -109,9 +109,11 @@
                                     {{ __('Profile') }}
                                 </x-jet-dropdown-link>
 
+                                @role('Administrador|Coach')
                                 <x-jet-dropdown-link href="{{ route('admin.usuarios') }}">
                                     Administrador
                                 </x-jet-dropdown-link>
+                                @endrole
 
                                 <div class="border-t border-gray-100"></div>
 
@@ -139,7 +141,7 @@
         </div>
     </nav>
 
-
+    <x-jet-banner />
     <!-- HERO -->
     <section class="hero d-flex flex-column justify-content-center align-items-center" id="home">
 
@@ -158,7 +160,7 @@
                         <a href="#feature" class="btn custom-btn mt-3" data-aos="fade-up" data-aos-delay="600">REGÍSTRATE</a>
 
                         <a href="#about" class="btn custom-btn bordered mt-3" data-aos="fade-up" data-aos-delay="700">SABER MAS</a>
-                       
+
                   </div>
              </div>
 
@@ -187,7 +189,7 @@
         <a href="#" class="btn custom-btn bg-color mt-3" data-aos="fade-up" data-aos-delay="300" data-toggle="modal" data-target="#membershipForm">¡Registrate Aqui!</a>
 
         <a href="{{ route('login') }}" class="btn custom-btn bg-color mt-3" data-aos="fade-up" data-aos-delay="300">¡Iniciar Sesión!</a>
-        @endauth   
+        @endauth
 
     </div>
 
@@ -237,7 +239,7 @@
                     <h1 class="mb-4 mt-4" data-aos="fade-up" data-aos-delay="300">Valores:</h1>
 
                     <p data-aos="fade-up" data-aos-delay="400">
-                        
+
                     </p>
                     <ul>
                             <li>-Profesionalidad y honradez</li>
@@ -247,8 +249,8 @@
                             <li>-Compromiso y atención a nuestros socios</li>
                             <li>-Trabajo en equipo </li>
                         </ul>
-                       
-                   
+
+
                 </div>
 
                 <div class="ml-lg-auto col-lg-3 col-md-6 col-12" data-aos="fade-up" data-aos-delay="700">

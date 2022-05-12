@@ -20,7 +20,7 @@ class JetstreamServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+
     }
 
     /**
@@ -32,12 +32,12 @@ class JetstreamServiceProvider extends ServiceProvider
     {
         Fortify::authenticateUsing(function (Request $request) {
             $user = User::where('email', $request->email)->first();
-    
+
             if ($user && Hash::check($request->password, $user->password)) {
                 if($user->estado == true){
                     return $user;
                 }
-                throw ValidationException::withMessages(['Estas desactivado temporalmente, por falta de pago!']); 
+                throw ValidationException::withMessages(['Estas desactivado temporalmente, por falta de pago!']);
             }
         });
 

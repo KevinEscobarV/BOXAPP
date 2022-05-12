@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
             'estado' => true,
             'email' => 'lifutsacas09@gmail.com',
             'password' => bcrypt('123456789'),
-        ]);
+        ])->assignRole('Administrador');
 
         User::create([
             'name' => 'Jhon',
@@ -29,6 +29,6 @@ class UserSeeder extends Seeder
             'estado' => true,
             'email' => 'jhon.jjfr@gmail.com',
             'password' => bcrypt('123456789'),
-        ]);
+        ])->assignRole('Coach');
     }
 }

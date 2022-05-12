@@ -15,11 +15,19 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
-Route::get('/administrador/usuarios', function(){
-    return view('administrador.usuarios');
-})->name('admin.usuarios');
+Route::group(['middleware' => ['role:Administrador|Coach']], function () {
+
+    Route::get('/administrador/usuarios', function(){
+        return view('administrador.usuarios');
+    })->name('admin.usuarios');
+
+    Route::get('/administrador/roles', function(){
+        return view('administrador.roles');
+    })->name('admin.roles');
+
+});
 
 Route::middleware([
     'auth:sanctum',

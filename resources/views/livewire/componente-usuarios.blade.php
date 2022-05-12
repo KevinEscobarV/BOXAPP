@@ -1,8 +1,6 @@
 <div>
-
     <div class="py-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-
             <!-- Users Table -->
             <div class="flex flex-col shadow-xl rounded-lg">
                 <div class="-my-2 overflow-x-auto">
@@ -26,8 +24,6 @@
                                     </select>
                                 </div>
                             </div>
-
-
                             <table class="min-w-full divide-y divide-gray-200">
                                 <thead class="bg-gray-700 text-white">
                                     <tr>
@@ -85,8 +81,8 @@
                                                 @endif
                                             </td>
                                                 <td class="text-center text-sm">
-                                                    <div class="flex justify-center">
-                                                            <a class="text-blue-300 hover:text-blue-700 cursor-pointer"
+                                                    <div class="flex justify-center">                                                    
+                                                           <a class="text-blue-300 hover:text-blue-700 cursor-pointer"
                                                                 wire:click="mostrarUsuario('{{ $user->id }}')">
                                                                 <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                                                                     stroke="currentColor" stroke-width="2">
@@ -94,13 +90,14 @@
                                                                     <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                                                                   </svg>
                                                             </a>
+                                                            @can('edit.users')
                                                             <a class="text-red-500 cursor-pointer ml-3"
                                                                 wire:click="$emit('statusUser', '{{ $user->id }}')">
-                                                                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                                                                    stroke="currentColor" stroke-width="2">
-                                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
-                                                                  </svg>
+                                                                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                                                <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                                                                </svg>
                                                             </a>
+                                                            @endcan
                                                     </div>
                                                 </td>
                                         </tr>
@@ -114,7 +111,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 
@@ -136,21 +132,21 @@
                 </div>
             </div>
 
-            <div class="col-span-6 sm:col-span-3">
+            <div class="col-span-6 sm:col-span-2">
                 <x-jet-label>
                     Nombre
                 </x-jet-label>
                 <x-jet-input type="text" wire:model="show.name" class="w-full" disabled />
             </div>
 
-            <div class="col-span-6 sm:col-span-3">
+            <div class="col-span-6 sm:col-span-2">
                 <x-jet-label>
                     Apellido
                 </x-jet-label>
                 <x-jet-input type="text" wire:model="show.apellido" class="w-full" disabled />
             </div>
 
-            <div class="col-span-6 sm:col-span-3">
+            <div class="col-span-6 sm:col-span-2">
                 <x-jet-label>
                     Identificación
                 </x-jet-label>
@@ -170,11 +166,98 @@
                 </x-jet-label>
                 <x-jet-input type="text" wire:model="show.email" class="w-full" disabled />
             </div>
+            <div class="col-span-6 sm:col-span-6">
+                <p class="text-center font-semibold">PERFIL</p>
+            </div>
+            <div class="col-span-6 sm:col-span-2">
+                <x-jet-label>
+                    Fecha de Ingreso
+                </x-jet-label>
+                <x-jet-input type="date" wire:model="userPerfil.fecha_ingreso" class="w-full" />
+            </div>
+            <div class="col-span-6 sm:col-span-2">
+                <x-jet-label>
+                    Problemas vasculares y respiratorios
+                </x-jet-label>
+                <x-jet-input type="text" wire:model="userPerfil.Problema_vasculares_respiratorio" class="w-full" />
+            </div>
+            <div class="col-span-6 sm:col-span-2">
+                <x-jet-label>
+                    Cirugias
+                </x-jet-label>
+            </div>
+            <div class="col-span-6 sm:col-span-2">
+                <x-jet-label>
+                    Cantidad de Cirugias
+                </x-jet-label>
+                <x-jet-input type="number" wire:model="userPerfil.cant_cirguias" class="w-full" />
+            </div>
+            <div class="col-span-6 sm:col-span-2">
+                <x-jet-label>
+                    Dolores
+                </x-jet-label>
+                <x-jet-input type="date" wire:model="userPerfil.fecha_ingreso" class="w-full" />
+            </div>
+            <div class="col-span-6 sm:col-span-2">
+                <x-jet-label>
+                    Cantidad de dolores
+                </x-jet-label>
+                <x-jet-input type="number" wire:model="userPerfil.cant_dolores" class="w-full" />
+            </div>
+            <div class="col-span-6 sm:col-span-2">
+                <x-jet-label>
+                    Fuma
+                </x-jet-label>
+                <x-jet-input type="text" wire:model="userPerfil.fuma" class="w-full" />
+            </div>
+            <div class="col-span-6 sm:col-span-2">
+                <x-jet-label>
+                    Consume Licor
+                </x-jet-label>
+                <x-jet-input type="text" wire:model="userPerfil.licor" class="w-full" />
+            </div>
+            <div class="col-span-6 sm:col-span-2">
+                <x-jet-label>
+                    Consume Drogas
+                </x-jet-label>
+                <x-jet-input type="text" wire:model="userPerfil.drogas" class="w-full" />
+            </div>
+            <div class="col-span-6 sm:col-span-2">
+                <x-jet-label>
+                    Realiza Actividad Fisica
+                </x-jet-label>
+                <x-jet-input type="text" wire:model="userPerfil.act_fisica" class="w-full" />
+            </div>
+            <div class="col-span-6 sm:col-span-2">
+                <x-jet-label>
+                    Otras actividades fisicas
+                </x-jet-label>
+                <x-jet-input type="text" wire:model="userPerfil.otras_act_fisica" class="w-full" />
+            </div>
+            <div class="col-span-6 sm:col-span-2">
+                <x-jet-label>
+                    Fecha de Ultima Actividad Fisica
+                </x-jet-label>
+                <x-jet-input type="date" wire:model="userPerfil.fecha_ultima_act_fisica" class="w-full" />
+            </div>
+
+            <div class="col-span-6 sm:col-span-6">
+                <x-jet-label value="Roles del Usuario" />
+                <div class="flex">
+                    @foreach ($roles as $role)
+                    <p class="mr-1">{{$role->name}}</p>
+                    <x-jet-input type="checkbox" class="mt-1 block mr-4" name="roles[]" value="{{$role->id}}" wire:model="userRoles" />
+                    @endforeach
+                </div>
+                <x-jet-input-error for="userRoles" class="mt-2" />
+            </div> 
 
         </x-slot>
 
         <x-slot name="footer">
-           
+            <x-jet-button wire:click="update" wire:loading.attr="disabled" wire:target="update">
+                {{ __('Save') }}
+            </x-jet-button>
         </x-slot>
 
     </x-edit-modal>
