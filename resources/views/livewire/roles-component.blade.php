@@ -20,10 +20,12 @@
                     </div>
                     <div class="col-span-6 sm:col-span-6">
                         <x-jet-label value="Seleccionar los permisos del rol a crear" class="mb-3" />
-                        <div class="flex">
+                        <div class="grid grid-cols-3 gap-4 content-start">
                             @foreach ($permisos as $permiso)
-                            <p class="mr-1">{{$permiso->description}}</p>
-                            <x-jet-input type="checkbox" class="mt-1 block mr-4" name="permissions[]" value="{{$permiso->id}}" wire:model="form.permissions" />
+                            <div class="flex">
+                                <x-jet-input type="checkbox" class="mt-1 block mr-4" name="permissions[]" value="{{$permiso->id}}" wire:model="form.permissions" />
+                                    <p class="mr-1">{{$permiso->description}}</p>
+                                </div>
                             @endforeach
                         </div>
                         <x-jet-input-error for="form.permissions" class="mt-2" />
@@ -129,7 +131,7 @@
             </div>
             <div class="col-span-6 sm:col-span-6">
                 <x-jet-label value="Permisos del Rol" />
-                <div class="flex mt-4">
+                <div class="grid grid-cols-3 gap-4 content-start">
                     @foreach ($permisos as $permiso)
                     <p class="mr-1">{{$permiso->description}}</p>
                     <x-jet-input type="checkbox" class="mt-1 block mr-4" name="permissions[]" value="{{$permiso->id}}" wire:model="editPermisos" />
