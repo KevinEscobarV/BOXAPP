@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,7 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::group(['middleware' => ['role:Administrador|Coach']], function () {
+Route::group(['middleware' => ['role:Administrador|Coach', 'auth:sanctum', config('jetstream.auth_session'),'verified']], function () {
 
     Route::get('/administrador/usuarios', function(){
         return view('administrador.usuarios');
@@ -29,12 +30,7 @@ Route::group(['middleware' => ['role:Administrador|Coach']], function () {
 
 });
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified'
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'),'verified'])->group(function () { 
+    Route::get('/dashboard', function () { return view('dashboard');})->name('dashboard');
+    Route::get('/usuario/perfil', [UserController::class, 'perfil'])->name('user.perfil');
 });

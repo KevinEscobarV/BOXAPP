@@ -11,7 +11,7 @@ use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens;
     use HasFactory;
@@ -33,6 +33,7 @@ class User extends Authenticatable
         'estado',
         'email',
         'password',
+        'grupo_id',
     ];
 
     /**
@@ -66,4 +67,15 @@ class User extends Authenticatable
         return $this->hasOne(PerfilUsuario::class, 'usuario_id');
     }
 
+    // RELACION DE USUARIO CON GRUPO
+    public function grupo()
+    {
+        return $this->belongsTo(Grupo::class, 'grupo_id');
+    }   
+
+    // RELACION DE USUARIO CON PAGOS
+    public function pagos()
+    {
+        return $this->hasMany(Pago::class, 'usuario_id');
+    }
 }

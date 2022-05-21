@@ -7,9 +7,19 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                <x-jet-welcome />
-            </div>
+                @auth
+                    @if (!auth()->user()->perfil)
+                        <div class="bg-gray-700 p-4 rounded-md flex justify-between items-center mb-5">
+                            <p class="text-white">TIENES INGRESAR EL RESTO DE TUS DATOS</p>
+                            <x-button info href="{{ route('user.perfil') }}">Editar Perfil</x-button>
+                        </div>
+                    @else
+                        <div class="bg-gray-700 p-4 rounded-md flex justify-between items-center mb-5">
+                            <p class="text-white">TU PERFIL ESTA COMPLETO</p>
+                            <x-button info href="{{ route('user.perfil') }}">Ver Mi Perfil</x-button>
+                        </div>
+                    @endif
+                @endauth
         </div>
     </div>
 </x-app-layout>

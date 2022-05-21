@@ -17,11 +17,10 @@ return new class extends Migration
         Schema::create('perfil_usuarios', function (Blueprint $table) {
             $table->id();
             $table->date('fecha_ingreso');
-            $table->string('Problema_vasculares_respiratorio');
-            $table->boolean('cirugias')->default(false);
-            $table->integer('cant_cirguias')->nullable();
-            $table->boolean('dolores')->default(false);
-            $table->integer('cant_dolores')->nullable();
+            // $table->string('Problema_vasculares_respiratorio');
+            // $table->boolean('cirugias')->default(false);
+            $table->string('cirugias')->nullable();
+            $table->string('dolores')->nullable();
             $table->boolean('fuma')->default(false);
             $table->enum('licor', [PerfilUsuario::nunca, PerfilUsuario::esporadicamente, PerfilUsuario::eventualmente, PerfilUsuario::regularmente, PerfilUsuario::siempre])->default(PerfilUsuario::nunca);
             $table->enum('drogas', [PerfilUsuario::nunca, PerfilUsuario::esporadicamente, PerfilUsuario::eventualmente, PerfilUsuario::regularmente, PerfilUsuario::siempre])->default(PerfilUsuario::nunca);

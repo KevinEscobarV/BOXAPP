@@ -20,6 +20,12 @@ class DatabaseSeeder extends Seeder
         $this->call([
             RoleSeeder::class,
             UserSeeder::class,
+            EnfermedadSeeder::class,
         ]);
+
+        $perfiles = \App\Models\PerfilUsuario::all();
+        foreach ($perfiles as $perfil) {
+            $perfil->enfermedades()->attach([1,2,3]);
+        }
     }
 }

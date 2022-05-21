@@ -105,6 +105,10 @@
                                     {{ __('Manage Account') }}
                                 </div>
 
+                                <x-jet-dropdown-link href="{{ route('user.perfil') }}">
+                                    Mis Datos
+                                </x-jet-dropdown-link>
+
                                 <x-jet-dropdown-link href="{{ route('profile.show') }}">
                                     {{ __('Profile') }}
                                 </x-jet-dropdown-link>
@@ -142,6 +146,7 @@
     </nav>
 
     <x-jet-banner />
+
     <!-- HERO -->
     <section class="hero d-flex flex-column justify-content-center align-items-center" id="home">
 
@@ -152,6 +157,15 @@
 
              <div class="col-lg-8 col-md-10 mx-auto col-12">
                   <div class="hero-text mt-5 text-center">
+
+                        @auth
+                            @if (!auth()->user()->perfil)
+                                <div class="bg-gray-700 p-4 rounded-md flex justify-between items-center mb-5">
+                                    <p class="text-white">TIENES INGRESAR EL RESTO DE TUS DATOS</p>
+                                    <a href="{{ route('user.perfil') }}" class="btn btn-primary">Editar Perfil</a>
+                                </div>
+                            @endif
+                        @endauth
 
                         <h6 data-aos="fade-up" data-aos-delay="300">¡Nueva Forma De Construir Un Estilo De Vida Saludable!</h6>
 
