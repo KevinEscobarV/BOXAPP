@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PagoController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,9 +29,24 @@ Route::group(['middleware' => ['role:Administrador|Coach', 'auth:sanctum', confi
         return view('administrador.roles');
     })->name('admin.roles');
 
+    Route::get('/administrador/rendimientos', function(){
+        return view('administrador.rendimientos');
+    })->name('admin.rendimientos');
+
+    
+
 });
+
+Route::get('/planes/precios', [PagoController::class, 'planes'])->name('planes.precios');
+
+Route::get('/planes/{plan}/pagar', [PagoController::class, 'payment'])->name('planes.payment');
+
+Route::get('/{plan}/respuesta', [PagoController::class, 'respuesta'])->name('respuesta');
+
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'),'verified'])->group(function () { 
     Route::get('/dashboard', function () { return view('dashboard');})->name('dashboard');
     Route::get('/usuario/perfil', [UserController::class, 'perfil'])->name('user.perfil');
+    Route::get('/usuario/pagos', [UserController::class, 'pagos'])->name('user.pagos');
+    Route::get('/usuario/planes', [UserController::class, 'planes'])->name('user.planes');
 });

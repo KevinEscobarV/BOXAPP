@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Models\PlanUser;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -16,6 +17,13 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
+        $schedule->call(function () {
+            $planUsers = PlanUser::where('fecha_fin', '>=', now())->get();
+            foreach ($planUsers as $planUser) {
+                $planUser->status = 0;
+                $planUser->save();
+            }
+        })->everyMinute();
     }
 
     /**

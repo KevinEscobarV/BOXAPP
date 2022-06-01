@@ -48,11 +48,6 @@ class User extends Authenticatable implements MustVerifyEmail
         'two_factor_secret',
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array
-     */
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
@@ -61,10 +56,22 @@ class User extends Authenticatable implements MustVerifyEmail
         'profile_photo_url',
     ];
 
+    // FECHA DE NACIMIENTO CARBON
+    public function getFechaNacimientoCarbonAttribute()
+    {
+        return \Carbon\Carbon::parse($this->fecha_nacimiento);
+    }
+
     // RELACION DE USUARIO CON PERFIL
     public function perfil()
     {
         return $this->hasOne(PerfilUsuario::class, 'usuario_id');
+    }
+
+    // RELACION CON RENDIMIENTO
+    public function rendimiento()
+    {
+        return $this->hasOne(Rendimiento::class, 'usuario_id');
     }
 
     // RELACION DE USUARIO CON GRUPO
@@ -77,5 +84,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function pagos()
     {
         return $this->hasMany(Pago::class, 'usuario_id');
+    }
+
+    // RELACION DE USUARIO CON PLANES
+    public function planes()
+    {
+        return $this->belongsToMany(Plan::class, 'plan_users', 'user_id', 'plan_id')->withPivot('fecha_inicio', 'fecha_fin', 'status');
     }
 }

@@ -11,13 +11,21 @@ class Pago extends Model
 
     protected $fillable = [
         'usuario_id',
+        'plan_id',
         'contenido',
+        'status',
     ];
 
     //RELACION CON USUARIO
     public function usuario()
     {
         return $this->belongsTo(User::class);
+    }
+
+    //RELACION CON PLAN
+    public function plan()
+    {
+        return $this->belongsTo(Plan::class);
     }
     
 }

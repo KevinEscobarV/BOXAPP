@@ -18,6 +18,7 @@ class UserSeeder extends Seeder
             'fecha_nacimiento' => '2000-07-31',
             'estado' => true,
             'email' => 'lifutsacas09@gmail.com',
+            'email_verified_at' => now(),
             'password' => bcrypt('123456789'),
         ])->assignRole('Administrador');
 
@@ -28,6 +29,7 @@ class UserSeeder extends Seeder
             'fecha_nacimiento' => '1993-08-09',
             'estado' => true,
             'email' => 'jhon.jjfr@gmail.com',
+            'email_verified_at' => now(),
             'password' => bcrypt('123456789'),
         ])->assignRole('Coach');
     }

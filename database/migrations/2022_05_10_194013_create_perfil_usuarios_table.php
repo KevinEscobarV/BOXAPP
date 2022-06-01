@@ -17,8 +17,6 @@ return new class extends Migration
         Schema::create('perfil_usuarios', function (Blueprint $table) {
             $table->id();
             $table->date('fecha_ingreso');
-            // $table->string('Problema_vasculares_respiratorio');
-            // $table->boolean('cirugias')->default(false);
             $table->string('cirugias')->nullable();
             $table->string('dolores')->nullable();
             $table->boolean('fuma')->default(false);

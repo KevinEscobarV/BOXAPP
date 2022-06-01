@@ -28,8 +28,6 @@ class PerfilUsuarioFactory extends Factory
             'act_fisica' => $this->faker->randomElement([PerfilUsuario::nunca, PerfilUsuario::esporadicamente, PerfilUsuario::eventualmente, PerfilUsuario::regularmente, PerfilUsuario::siempre]),
             'otras_act_fisica' => $this->faker->sentence(2),
             'fecha_ultima_act_fisica' => $this->faker->dateTimeBetween('-1 years', 'now'),
-            'usuario_id' => User::factory(),
-
         ];
     }
 }

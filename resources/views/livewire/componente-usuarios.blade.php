@@ -71,35 +71,41 @@
                                                 {{ $user->identificacion }}
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                {{ date('M/d/Y', strtotime($user->fecha_nacimiento)); }}
+                                                {{ date('M/d/Y', strtotime($user->fecha_nacimiento)) }}
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                                 @if ($user->estado == true)
-                                                    <span class="text-green-800 bg-green-300 rounded-md px-2 py-1">Activo</span>
+                                                    <span
+                                                        class="text-green-800 bg-green-300 rounded-md px-2 py-1">Activo</span>
                                                 @else
-                                                    <span class="text-orange-800 bg-orange-300 rounded-md px-2 py-1">Inactivo</span>
+                                                    <span
+                                                        class="text-orange-800 bg-orange-300 rounded-md px-2 py-1">Inactivo</span>
                                                 @endif
                                             </td>
-                                                <td class="text-center text-sm">
-                                                    <div class="flex justify-center">                                                    
-                                                           <a class="text-blue-300 hover:text-blue-700 cursor-pointer"
-                                                                wire:click="mostrarUsuario('{{ $user->id }}')">
-                                                                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                                                                    stroke="currentColor" stroke-width="2">
-                                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                                                                  </svg>
-                                                            </a>
-                                                            @can('edit.users')
-                                                            <a class="text-red-500 cursor-pointer ml-3"
-                                                                wire:click="$emit('statusUser', '{{ $user->id }}')">
-                                                                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                                                <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
-                                                                </svg>
-                                                            </a>
-                                                            @endcan
-                                                    </div>
-                                                </td>
+                                            <td class="text-center text-sm">
+                                                <div class="flex justify-center">
+                                                    <a class="text-blue-300 hover:text-blue-700 cursor-pointer"
+                                                        wire:click="mostrarUsuario('{{ $user->id }}')">
+                                                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                                            stroke="currentColor" stroke-width="2">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                                        </svg>
+                                                    </a>
+                                                    @can('edit.users')
+                                                        <a class="text-red-500 cursor-pointer ml-3"
+                                                            wire:click="$emit('statusUser', '{{ $user->id }}')">
+                                                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                                                stroke="currentColor" stroke-width="2">
+                                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                                    d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                                                            </svg>
+                                                        </a>
+                                                    @endcan
+                                                </div>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -117,7 +123,7 @@
     <x-edit-modal wire:model="open" maxWidth="5xl">
 
         <x-slot name="title">
-            
+
         </x-slot>
 
         <x-slot name="content">
@@ -127,8 +133,7 @@
                     Nombre
                 </x-jet-label>
                 <div class="flex justify-center items-center">
-                    <img class="h-56 w-56 rounded-xl object-cover object-center"
-                    src="{{ $urlPhoto }}" alt="">
+                    <img class="h-56 w-56 rounded-xl object-cover object-center" src="{{ $urlPhoto }}" alt="">
                 </div>
             </div>
 
@@ -179,7 +184,8 @@
                 <x-jet-label>
                     Problemas vasculares y respiratorios
                 </x-jet-label>
-                <x-jet-input type="text" wire:model="userPerfil.Problema_vasculares_respiratorio" class="w-full" />
+                <x-jet-input type="text" wire:model="userPerfil.Problema_vasculares_respiratorio"
+                    class="w-full" />
             </div>
             <div class="col-span-6 sm:col-span-2">
                 <x-jet-label>
@@ -245,12 +251,13 @@
                 <x-jet-label value="Roles del Usuario" />
                 <div class="flex">
                     @foreach ($roles as $role)
-                    <p class="mr-1">{{$role->name}}</p>
-                    <x-jet-input type="checkbox" class="mt-1 block mr-4" name="roles[]" value="{{$role->id}}" wire:model="userRoles" />
+                        <p class="mr-1">{{ $role->name }}</p>
+                        <x-jet-input type="checkbox" class="mt-1 block mr-4" name="roles[]" value="{{ $role->id }}"
+                            wire:model="userRoles" />
                     @endforeach
                 </div>
                 <x-jet-input-error for="userRoles" class="mt-2" />
-            </div> 
+            </div>
 
         </x-slot>
 
@@ -266,27 +273,27 @@
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script>
             Livewire.on('statusUser', userId => {
-            Swal.fire({
-                title: '¿Estas Seguro?',
-                text: "¡Cambiaras el estado del usuario!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: '¡Sí, Cambiar estado de Usuario!',
-                cancelButtonText: 'Cancelar'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    Livewire.emitTo('componente-usuarios', 'cambiarEstado', userId)
-                    Swal.fire(
-                        '¡Estado Cambiado!',
-                        'Se ha cambiado correctamente.',
-                        'success'
-                    )
-                }
+                Swal.fire({
+                    title: '¿Estas Seguro?',
+                    text: "¡Cambiaras el estado del usuario!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: '¡Sí, Cambiar estado de Usuario!',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Livewire.emitTo('componente-usuarios', 'cambiarEstado', userId)
+                        Swal.fire(
+                            '¡Estado Cambiado!',
+                            'Se ha cambiado correctamente.',
+                            'success'
+                        )
+                    }
+                })
             })
-        })
         </script>
     @endpush
-    
+
 </div>

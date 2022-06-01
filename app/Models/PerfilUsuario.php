@@ -30,7 +30,7 @@ class PerfilUsuario extends Model
         return $this->belongsTo(User::class);
     }
 
-    // RELACION PERFIL CON ENFERMEDAD
+    // RELACION PERFIL CON ENFERMEDADES
     public function enfermedades()
     {
         return $this->belongsToMany(Enfermedades::class, 'enfermedad_users', 'perfil_id', 'enfermedad_id');
@@ -39,19 +39,23 @@ class PerfilUsuario extends Model
     // Para que el campo Fuma sea una palabra
     public function getFumaWordAttribute()
     {
-        if ($this->fuma == 1) {
+        if ($this->fuma) {
             return 'Si';
-        }else 
-        {
+        }else{
             return 'No';
         }
-
     }
 
     // Fecha de ingreso
     public function getFechaIngresoCarbonAttribute()
     {
         return \Carbon\Carbon::parse($this->fecha_ingreso);
+    }
+
+    // Fecha de última actividad física
+    public function getFechaUltimaActFisicaCarbonAttribute()
+    {
+        return \Carbon\Carbon::parse($this->fecha_ultima_act_fisica);
     }
 
     // Para que el campo Licor sea una palabra
