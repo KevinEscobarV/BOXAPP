@@ -69,7 +69,7 @@ class PagoController extends Controller
                     'fecha_fin' => now()->addDays($plan->dias),
                 ]);
 
-                session()->flash('flash.banner', 'Pago aprobado, ahora estás en el plan ' . $plan->nombre);
+                session()->flash('flash.banner', 'Pago aprobado, ahora cuentas con el plan ' . $plan->nombre);
                 session()->flash('flash.bannerStyle', 'success');
                 return redirect()->route('user.planes');
                 break;
@@ -95,7 +95,7 @@ class PagoController extends Controller
                     'contenido' => $data_encode,
                     'status' => $status,
                 ]);
-                session()->flash('flash.banner', 'Ha ocurrido un error');
+                session()->flash('flash.banner', 'Ha ocurrido un error, intente nuevamente');
                 session()->flash('flash.bannerStyle', 'danger');
                 return redirect()->route('planes.precios');
                 break;
@@ -108,12 +108,15 @@ class PagoController extends Controller
                     'contenido' => $data_encode,
                     'status' => $status,
                 ]);
-                session()->flash('flash.banner', 'El pago ha sido anulado');
+                session()->flash('flash.banner', 'El pago ha sido anulado, intente nuevamente');
                 session()->flash('flash.bannerStyle', 'danger');
                 return redirect()->route('planes.precios');
                 break;
             
             default:
+                session()->flash('flash.banner', 'Ha ocurrido un error, intente nuevamente');
+                session()->flash('flash.bannerStyle', 'danger');
+                return redirect()->route('planes.precios');
                 break;
         }
     }

@@ -1,51 +1,67 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <!-- Fonts -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
-        <!-- Styles -->
-        <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
-        @livewireStyles
-        @wireUiScripts
+    <!-- Styles -->
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+    @livewireStyles
+    @wireUiScripts
 
-        <!-- Scripts -->
-        <script src="{{ mix('js/app.js') }}" defer></script>
-    </head>
-    <body class="font-sans antialiased">
-        <x-jet-banner />
-        <x-notifications />
+    <!-- Scripts -->
+    <script src="{{ mix('js/app.js') }}" defer></script>
+</head>
 
-        <div class="min-h-screen bg-gray-100">
-            @livewire('navigation-menu')
+<body class="font-sans antialiased">
 
-            <!-- ENCABEZADO PAGINA -->
-            @if (isset($header))
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endif
+    <x-jet-banner />
+    <x-notifications />
+    <x-dialog />
 
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
+    <div class="min-h-screen bg-gray-100">
+
+        @livewire('navigation-menu')
+
+        <div class="flex">
+
+            @auth
+                <x-aside />
+            @endauth
+            
+            <div class="flex flex-col flex-1 min-h-screen overflow-x-hidden overflow-y-auto">
+
+                @if (isset($header))
+                    <header class="bg-gray-800 shadow">
+                        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                            {{ $header }}
+                        </div>
+                    </header>
+                @endif
+
+                <main class="">
+                    {{ $slot }}
+                </main>
+
+            </div>
         </div>
 
-        @stack('modals')
+        <x-footer />
 
-        @livewireScripts
+    </div>
 
-        @stack('script')
-        
-    </body>
+    @stack('modals')
+
+    @livewireScripts
+    @stack('script')
+
+</body>
+
 </html>

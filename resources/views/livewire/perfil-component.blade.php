@@ -1,13 +1,15 @@
 <div>
-    <div class="py-6">
-        <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+    <div class="py-6 bg-black h-screen">
+        <div class="mx-auto container sm:px-6 lg:px-8">
             @if (!$datos)
-                <x-jet-form-section submit="save">
+                <x-form-section submit="save">
                     <x-slot name="title">
-                        Formulario de Perfil
+                        <p class="text-white">Formulario de Perfil</p>
+                        
                     </x-slot>
                     <x-slot name="description">
-                        Formulario para creacion de perfil
+                        <p class="text-white">Formulario para creacion de perfil</p>
+                        
                     </x-slot>
                     <x-slot name="form">
                         <div class="col-span-6 sm:col-span-3">
@@ -63,11 +65,11 @@
                             {{ __('Save') }}
                         </x-jet-button>
                     </x-slot>
-                </x-jet-form-section>
+                </x-form-section>
             @else
                 <!-- Perfil -->
                 <div class="bg-white shadow overflow-hidden sm:rounded-lg">
-                    <div class="px-4 py-5 sm:px-6 bg-gradient-to-r from-black to-orange-800">
+                    <div class="px-4 py-5 sm:px-6 bg-gradient-to-r from-mustard-700 to-black">
                         <div class="flex items-center justify-between">
                             <div class="fzlex-shrink-0">
                                 <img class="h-16 w-16 rounded-full object-cover" src="{{ $datos->usuario->profile_photo_url }}" alt="{{ $datos->usuario->name }}" />
@@ -158,7 +160,7 @@
 
                     </div>
                     <div class="bg-gray-300 px-6 py-5 flex justify-end">
-                        <x-button outline orange label="Editar Perfil" wire:click="edit('{{ $datos->id }}')" />
+                        <x-button primary label="Editar Perfil" wire:click="edit('{{ $datos->id }}')" />
                     </div>
                 </div>
             @endif

@@ -1,1 +1,1 @@
-<img src="{{asset('images/BOX88.png')}}" alt="BOX88">
+<img src="{{asset('images/BOX88-V2.png')}}" alt="BOX88">

@@ -1,3 +1,3 @@
 <a href="/">
-    <img class="h-72" src="{{asset('images/BOX88.png')}}" alt="BOX88">
+    <img class="h-52" src="{{asset('images/BOX88-V2.png')}}" alt="BOX88">
 </a>

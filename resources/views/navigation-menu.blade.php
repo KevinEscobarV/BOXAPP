@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-black border-b border-gray-100">
+<nav x-data="{ open: false }" class="bg-black border-b-4 border-mustard-500">
     <!-- Primary Navigation Menu -->
     <div class="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-20">
@@ -12,26 +12,26 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="/">
+                    <x-jet-nav-link href="{{ route('home') }}" :active="request()->routeIs('home')">
                         Inicio
-                    </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('admin.usuarios') }}" :active="request()->routeIs('admin.usuarios')">
-                        {{ __('Usuarios') }}
-                    </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('admin.roles') }}" :active="request()->routeIs('admin.roles')">
-                        Roles
-                    </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('admin.rendimientos') }}" :active="request()->routeIs('admin.rendimientos')">
-                        Rendimientos
                     </x-jet-nav-link>
                     <x-jet-nav-link href="{{ route('planes.precios') }}" :active="request()->routeIs('planes.precios')">
                         Planes
+                    </x-jet-nav-link>                   
+                    <x-jet-nav-link href="" :active="request()->routeIs('')">
+                        Horarios
                     </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('user.perfil') }}" :active="request()->routeIs('user.perfil')">
-                        Mis Datos
+                    <x-jet-nav-link href="{{ route('galeria') }}" :active="request()->routeIs('galeria')">
+                        Galeria
                     </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('user.planes') }}" :active="request()->routeIs('user.planes')">
-                        Mis Subscripciones
+                    <x-jet-nav-link href="{{ route('videos') }}" :active="request()->routeIs('videos')">
+                        Videos
+                    </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('nosotros') }}" :active="request()->routeIs('nosotros')">
+                        ¿Quienes Somos?
+                    </x-jet-nav-link>                    
+                    <x-jet-nav-link href="{{ route('contacto') }}" :active="request()->routeIs('contacto')">
+                        Contactanos
                     </x-jet-nav-link>
                 </div>
             </div>
@@ -39,10 +39,11 @@
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <!-- Settings Dropdown -->
                 <div class="ml-3 relative">
+                    @auth
                     <x-jet-dropdown align="right" width="48">
                         <x-slot name="trigger">
                             @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
-                                <button class="flex text-sm ring-2 ring-transparent rounded-full focus:outline-none focus:ring-orange-400 transition">
+                                <button class="flex text-sm ring-2 ring-transparent rounded-full focus:outline-none focus:ring-mustard-500 transition">
                                     <img class="h-10 w-10 rounded-full object-cover" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
                                 </button>
                             @else
@@ -76,12 +77,6 @@
                                 Mis Pagos
                             </x-jet-dropdown-link>
 
-                            @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
-                                <x-jet-dropdown-link href="{{ route('api-tokens.index') }}">
-                                    {{ __('API Tokens') }}
-                                </x-jet-dropdown-link>
-                            @endif
-
                             <div class="border-t border-gray-100"></div>
 
                             <!-- Authentication -->
@@ -95,6 +90,17 @@
                             </form>
                         </x-slot>
                     </x-jet-dropdown>
+                    @else
+                    <a href="{{ route('login') }}" class="group relative w-52 flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-black bg-mustard-500 hover:bg-mustard-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-mustard-500">
+                        <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+                          <!-- Heroicon name: solid/lock-closed -->
+                          <svg class="h-5 w-5 text-mustard-700 group-hover:text-mustard-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
+                          </svg>
+                        </span>
+                        {{ __('Login') }}
+                    </a>
+                    @endauth
                 </div>
             </div>
 
@@ -118,6 +124,7 @@
             </x-jet-responsive-nav-link>
         </div>
 
+        @auth
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
             <div class="flex items-center px-4">
@@ -138,13 +145,6 @@
                 <x-jet-responsive-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">
                     {{ __('Profile') }}
                 </x-jet-responsive-nav-link>
-
-                @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
-                    <x-jet-responsive-nav-link href="{{ route('api-tokens.index') }}" :active="request()->routeIs('api-tokens.index')">
-                        {{ __('API Tokens') }}
-                    </x-jet-responsive-nav-link>
-                @endif
-
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}" x-data>
                     @csrf
@@ -154,38 +154,8 @@
                         {{ __('Log Out') }}
                     </x-jet-responsive-nav-link>
                 </form>
-
-                <!-- Team Management -->
-                @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
-                    <div class="border-t border-gray-200"></div>
-
-                    <div class="block px-4 py-2 text-xs text-gray-400">
-                        {{ __('Manage Team') }}
-                    </div>
-
-                    <!-- Team Settings -->
-                    <x-jet-responsive-nav-link href="{{ route('teams.show', Auth::user()->currentTeam->id) }}" :active="request()->routeIs('teams.show')">
-                        {{ __('Team Settings') }}
-                    </x-jet-responsive-nav-link>
-
-                    @can('create', Laravel\Jetstream\Jetstream::newTeamModel())
-                        <x-jet-responsive-nav-link href="{{ route('teams.create') }}" :active="request()->routeIs('teams.create')">
-                            {{ __('Create New Team') }}
-                        </x-jet-responsive-nav-link>
-                    @endcan
-
-                    <div class="border-t border-gray-200"></div>
-
-                    <!-- Team Switcher -->
-                    <div class="block px-4 py-2 text-xs text-gray-400">
-                        {{ __('Switch Teams') }}
-                    </div>
-
-                    @foreach (Auth::user()->allTeams() as $team)
-                        <x-jet-switchable-team :team="$team" component="jet-responsive-nav-link" />
-                    @endforeach
-                @endif
             </div>
         </div>
+        @endauth
     </div>
 </nav>

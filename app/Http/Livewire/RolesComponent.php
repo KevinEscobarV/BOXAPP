@@ -43,6 +43,7 @@ class RolesComponent extends Component
         $this->validate();
         $rol = Role::create([
             'name' => $this->form['name'],
+            'guard_name' => 'web',
         ]);
         $rol->syncPermissions($this->form['permissions']);
         $this->reset('form');

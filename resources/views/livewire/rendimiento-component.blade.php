@@ -6,29 +6,26 @@
                 <div class="-my-2 overflow-x-auto">
                     <div class="py-2 align-middle inline-block min-w-full ">
                         <div class="overflow-hidden border-b border-gray-200 sm:rounded-lg">
-                            <div class="flex bg-gray-700 px-2 sm:px-5">
-                                <x-input right-icon="user" label="Busqueda" placeholder="Buscar" />
-                                <x-select
-                                    class="ml-6"
-                                    label="Select Status"
-                                    placeholder="Select one status"
-                                    :options="[
-                                        ['name' => 'Active',  'id' => 1],
-                                        ['name' => 'Pending', 'id' => 2],
-                                        ['name' => 'Stuck',   'id' => 3],
-                                        ['name' => 'Done',    'id' => 4],
-                                    ]"
-                                    option-label="name"
-                                    option-value="id"
-                                    wire:model.defer="model"
-                                />
+                            <div class="flex bg-black px-2 pt-4 sm:px-5">
+                                <x-input right-icon="user" placeholder="Buscar" />
+                                {{-- <x-select class="ml-6" placeholder="Select one status" :options="[
+                                    ['name' => 'Active', 'id' => 1],
+                                    ['name' => 'Pending', 'id' => 2],
+                                    ['name' => 'Stuck', 'id' => 3],
+                                    ['name' => 'Done', 'id' => 4],
+                                ]"
+                                    option-label="name" option-value="id" wire:model.defer="model" /> --}}
                             </div>
-                            <table class="min-w-full divide-y divide-gray-200">
-                                <thead class="bg-gray-700 text-white">
+                            <table class="min-w-full divide-y divide-gray-200 table-fixed">
+                                <thead class="bg-black text-white">
                                     <tr>
                                         <th scope="col"
                                             class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
                                             Usuario
+                                        </th>
+                                        <th scope="col"
+                                            class="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider">
+                                            Acciones
                                         </th>
                                         <th scope="col"
                                             class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
@@ -114,8 +111,28 @@
                                                         <div class="text-sm font-medium text-gray-900">
                                                             {{ $rend->usuario->name }}
                                                             {{ $rend->usuario->apellido }}</div>
-                                                        <div class="text-sm text-gray-500">{{ $rend->usuario->email }}</div>
+                                                        <div class="text-sm text-gray-500">{{ $rend->usuario->email }}
+                                                        </div>
                                                     </div>
+                                                </div>
+                                            </td>
+                                            <td class="text-center text-sm">
+                                                <div class="flex justify-center">
+                                                    <a class="text-blue-300 hover:text-blue-700 cursor-pointer"
+                                                        wire:click="edit('{{ $rend->id }}')">
+                                                        <x-icon name="pencil" class="w-6 h-6 mr-2" />
+                                                    </a>
+                                                    <a class="text-red-400 hover:text-red-600 cursor-pointer"
+                                                        x-on:confirm="{
+                                                            title: '¿Estás seguro de eliminar este rendimiento?',
+                                                            acceptLabel: 'Confirmar',
+                                                            rejectLabel: 'Cancelar',
+                                                            icon: 'warning',
+                                                            method: 'delete',
+                                                            params: {{ $rend->id }}
+                                                            }">
+                                                        <x-icon name="trash" class="w-6 h-6" />
+                                                    </a>
                                                 </div>
                                             </td>
                                             <td class="px-6 py-4 text-sm text-gray-500">
@@ -169,30 +186,7 @@
                                             <td class="px-6 py-4 text-sm text-gray-500">
                                                 {{ $rend->pierna_izquierda }}
                                             </td>
-                                            {{-- <td class="text-center text-sm">
-                                                <div class="flex justify-center">
-                                                    <a class="text-blue-300 hover:text-blue-700 cursor-pointer"
-                                                        wire:click="mostrarUsuario('{{ $user->id }}')">
-                                                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                                                            stroke="currentColor" stroke-width="2">
-                                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                                                        </svg>
-                                                    </a>
-                                                    @can('edit.users')
-                                                        <a class="text-red-500 cursor-pointer ml-3"
-                                                            wire:click="$emit('statusUser', '{{ $user->id }}')">
-                                                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                                                                stroke="currentColor" stroke-width="2">
-                                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                                    d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
-                                                            </svg>
-                                                        </a>
-                                                    @endcan
-                                                </div>
-                                            </td> --}}
+
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -206,4 +200,72 @@
             </div>
         </div>
     </div>
+
+    <x-modal.card title="Edición de Rendimiento" max-width="4xl" blur wire:model.defer="open">
+        <div class="grid grid-cols-6 gap-6">
+            <div class="col-span-3 sm:col-span-1">
+                <x-input label="Peso" placeholder="Peso" wire:model="edit_form.peso" />
+            </div>
+            <div class="col-span-3 sm:col-span-1">
+                <x-input label="BMI" placeholder="BMI" wire:model="edit_form.bmi" />
+            </div>
+            <div class="col-span-3 sm:col-span-1">
+                <x-input label="Grasa" placeholder="Grasa" wire:model="edit_form.grasa" />
+            </div>
+            <div class="col-span-3 sm:col-span-1">
+                <x-input label="Musculo" placeholder="Musculo" wire:model="edit_form.musculo" />
+            </div>
+            <div class="col-span-3 sm:col-span-1">
+                <x-input label="Agua" placeholder="Agua" wire:model="edit_form.agua" />
+            </div>
+            <div class="col-span-3 sm:col-span-1">
+                <x-input label="Grasa Visceral" placeholder="Grasa Visceral" wire:model="edit_form.grasa_visceral" />
+            </div>
+            <div class="col-span-3 sm:col-span-1">
+                <x-input label="Huesos" placeholder="Huesos" wire:model="edit_form.huesos" />
+            </div>
+            <div class="col-span-3 sm:col-span-1">
+                <x-input label="Metabolismo" placeholder="Metabolismo" wire:model="edit_form.metabolismo" />
+            </div>
+            <div class="col-span-3 sm:col-span-1">
+                <x-input label="Proteina" placeholder="Proteina" wire:model="edit_form.proteina" />
+            </div>
+            <div class="col-span-3 sm:col-span-1">
+                <x-input label="Obesidad" placeholder="Obesidad" wire:model="edit_form.obesidad" />
+            </div>
+            <div class="col-span-3 sm:col-span-1">
+                <x-input label="LBM" placeholder="LBM" wire:model="edit_form.lbm" />
+            </div>
+            <div class="col-span-3 sm:col-span-1">
+                <x-input label="Abdomen Medio" placeholder="Abdomen Medio" wire:model="edit_form.abdomen_medio" />
+            </div>
+            <div class="col-span-3 sm:col-span-1">
+                <x-input label="Abdomen Bajo" placeholder="Abdomen Bajo" wire:model="edit_form.abdomen_bajo" />
+            </div>
+            <div class="col-span-3 sm:col-span-1">
+                <x-input label="Brazo Derecho" placeholder="Brazo Derecho" wire:model="edit_form.brazo_derecho" />
+            </div>
+            <div class="col-span-3 sm:col-span-1">
+                <x-input label="Brazo Izquierdo" placeholder="Brazo Izquierdo" wire:model="edit_form.brazo_izquierdo" />
+            </div>
+            <div class="col-span-3 sm:col-span-1">
+                <x-input label="Pierna Derecha" placeholder="Pierna Derecha" wire:model="edit_form.pierna_derecha" />
+            </div>
+            <div class="col-span-3 sm:col-span-1">
+                <x-input label="Pierna Izquierda" placeholder="Pierna Izquierda"
+                    wire:model="edit_form.pierna_izquierda" />
+            </div>
+        </div>
+        <x-slot name="footer">
+            <div class="flex justify-end gap-x-4">
+                <div class="flex">
+                    <x-button flat label="Cancelar" x-on:click="close" class="mr-3" />
+                    <x-button orange label="Guardar" wire:click="update" wire:loading.attr="disabled"
+                        wire:target="update" />
+                </div>
+            </div>
+        </x-slot>
+    </x-modal.card>
+
+
 </div>

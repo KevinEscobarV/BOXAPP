@@ -1,1 +1,1 @@
-<img class="h-24" src="{{asset('images/BOX88.png')}}" alt="BOX88">
+<img class="h-20" src="{{asset('images/BOX88-V2.png')}}" alt="BOX88">
