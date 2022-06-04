@@ -26,6 +26,10 @@ Route::get('/videos', function () {
     return view('videos');
 })->name('videos');
 
+Route::get('/horarios', function () {
+    return view('horarios');
+})->name('horarios');
+
 Route::group(['middleware' => ['role:Administrador|Coach', 'auth:sanctum', config('jetstream.auth_session'),'verified']], function () {
     Route::get('/administrador/usuarios', function(){
         return view('administrador.usuarios');
